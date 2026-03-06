@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applied Ethics: Grade 7 Protocol</title>
+    <meta name="description" content="IB Applied Ethics revision tool — normative frameworks, biomedical ethics, business ethics, wealth & poverty, flashcards, and argument autopsy.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide-react@0.344.0/dist/umd/lucide-react.min.js"></script>
+    <style>
+        body { margin: 0; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel" data-type="module">
+const { useState } = React;
+const { BookOpen, Stethoscope, Briefcase, Landmark, PenTool, AlertTriangle, CheckCircle, Layers, RefreshCw, ArrowRight, ArrowLeft, Scissors } = lucideReact;
+
+function App() {
+  const [activeTab, setActiveTab] = useState('frameworks');
+  const tabs = [
+    { id: 'frameworks', label: 'Normative Frameworks', icon: BookOpen },
+    { id: 'biomedical', label: 'Biomedical', icon: Stethoscope },
+    { id: 'business', label: 'Business', icon: Briefcase },
+    { id: 'wealth', label: 'Wealth & Poverty', icon: Landmark },
+    { id: 'questions', label: 'Practice Exams', icon: PenTool },
+    { id: 'flashcards', label: 'Flashcards', icon: Layers },
+    { id: 'autopsy', label: 'Argument Autopsy', icon: Scissors },
+  ];
+  return (
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans p-4 md:p-8">
+      <div className="max-w-7xl mx-auto">
+        <header className="mb-8 border-b-4 border-slate-900 pb-4">
+          <h1 className="text-4xl font-black uppercase tracking-tight text-slate-900">Applied Ethics: Grade 7 Protocol</h1>
+          <p className="text-lg font-medium text-slate-600 mt-2">Evaluate. Synthesise. Do not summarise.</p>
+        </header>
+        <nav className="flex flex-wrap gap-2 mb-8">
+          {tabs.map(tab => {
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`flex items-center gap-2 px-4 py-2 font-bold rounded-t-lg border-2 border-b-0 transition-colors ${
+                  activeTab === tab.id
+                    ? 'bg-slate-900 text-white border-slate-900'
+                    : 'bg-white text-slate-700 border-slate-300 hover:bg-slate-200'
+                }`}
+              >
+                <Icon size={18} />
+                {tab.label}
+              </button>
+            )
+          })}
+        </nav>
+        <main className="bg-white border-2 border-slate-900 p-6 rounded-b-xl rounded-tr-xl shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+          {activeTab === 'frameworks' && <Frameworks />}
+          {activeTab === 'biomedical' && <Biomedical />}
+          {activeTab === 'business' && <Business />}
+          {activeTab === 'wealth' && <Wealth />}
+          {activeTab === 'questions' && <Questions />}
+          {activeTab === 'flashcards' && <Flashcards />}
+          {activeTab === 'autopsy' && <Autopsy />}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+function Frameworks() {
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-black uppercase border-b-2 border-slate-200 pb-2">The Analytical Lenses</h2>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="border-2 border-blue-600 rounded-lg p-5 bg-blue-50">
+          <h3 className="text-xl font-black text-blue-800 mb-3 flex items-center gap-2">
+            <CheckCircle size={24} /> Utilitarianism (Bentham, Mill, Singer)
+          </h3>
+          <p className="font-semibold mb-2">Core Maxim: An action is right if it maximises overall utility (happiness/preference satisfaction) for the greatest number.</p>
+          <ul className="list-disc pl-5 space-y-1 text-sm mb-4">
+            <li><strong>Act vs. Rule:</strong> Act evaluates individual actions; Rule evaluates conformity to utility-maximising rules.</li>
+            <li><strong>Consequentialist:</strong> Intentions are irrelevant. Only outcomes matter.</li>
+            <li><strong>Egalitarian:</strong> Everyone's suffering counts equally (Singer extends this to animals).</li>
+          </ul>
+          <div className="bg-blue-200 p-3 rounded border border-blue-400">
+            <h4 className="font-bold text-blue-900 flex items-center gap-1"><AlertTriangle size={16}/> Grade 7 Stress Test</h4>
+            <p className="text-sm">Does it justify the "tyranny of the majority"? Can we accurately calculate long-term utility? Is it too demanding (Singer's requirement to give until marginal utility)?</p>
+          </div>
+        </div>
+        <div className="border-2 border-red-600 rounded-lg p-5 bg-red-50">
+          <h3 className="text-xl font-black text-red-800 mb-3 flex items-center gap-2">
+            <CheckCircle size={24} /> Kantian Ethics (Deontology)
+          </h3>
+          <p className="font-semibold mb-2">Core Maxim: Morality is derived from rationality and duty, governed by the Categorical Imperative.</p>
+          <ul className="list-disc pl-5 space-y-1 text-sm mb-4">
+            <li><strong>Formula of Universal Law:</strong> Act only according to that maxim whereby you can at the same time will that it should become a universal law.</li>
+            <li><strong>Formula of Humanity:</strong> Act in such a way that you treat humanity... never merely as a means to an end, but always at the same time as an end.</li>
+            <li><strong>Intentions matter:</strong> Actions only have moral worth if done <em>from</em> duty.</li>
+          </ul>
+          <div className="bg-red-200 p-3 rounded border border-red-400">
+            <h4 className="font-bold text-red-900 flex items-center gap-1"><AlertTriangle size={16}/> Grade 7 Stress Test</h4>
+            <p className="text-sm">How does Kant resolve conflicting duties (e.g., lying to a murderer to save a life)? Is it too rigid for complex, modern ethical dilemmas?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Biomedical() {
+  return (
+    <div className="space-y-8">
+      <h2 className="text-2xl font-black uppercase border-b-2 border-slate-200 pb-2">Biomedical Ethics</h2>
+      <div className="grid md:grid-cols-3 gap-4">
+        <div className="md:col-span-1 bg-slate-100 p-4 rounded-lg border border-slate-300">
+          <h3 className="text-lg font-black uppercase mb-2">Euthanasia</h3>
+          <p className="text-sm mb-2"><strong>Key Distinctions:</strong> Active (causing death) vs. Passive (withholding treatment). Voluntary (requested) vs. Non-voluntary (patient incapacitated). The core friction is the Sanctity of Life versus Autonomy and Quality of Life.</p>
+          <div className="mt-4 p-3 bg-amber-100 border border-amber-400 rounded">
+            <h4 className="font-bold text-xs uppercase mb-1 text-amber-800">Real World Case</h4>
+            <p className="text-sm font-semibold">Diane Pretty (UK) & Dignitas (Swiss)</p>
+            <p className="text-xs mt-1">UK courts denied Pretty the right for her husband to assist her suicide, ruling right to life does not include right to die. Conversely, Swiss clinics operationalise autonomy.</p>
+          </div>
+        </div>
+        <div className="md:col-span-2 grid grid-cols-2 gap-4">
+          <div className="bg-blue-50 border-l-4 border-blue-600 p-4">
+            <h4 className="font-bold text-blue-800 mb-2">Utilitarian Approach</h4>
+            <p className="text-sm">Peter Singer's Preference Utilitarianism replaces the "sanctity of life" with a "quality of life" ethic. If a rational agent's preference is to avoid a future of sheer negative utility (pain), denying euthanasia is a moral failure. The distinction between active and passive is irrelevant here; outcomes dictate morality, not methods (James Rachels).</p>
+          </div>
+          <div className="bg-red-50 border-l-4 border-red-600 p-4">
+            <h4 className="font-bold text-red-800 mb-2">Deontological & Absolutist Constraints</h4>
+            <p className="text-sm">Kantian deontology strictly opposes suicide. Destroying one's own rational agency to escape pain is treating oneself as a mere means to the end of pain relief. Additionally, Natural Law applies the Doctrine of Double Effect: administering pain relief that hastens death is permissible if the intention is pain relief, but acting with the primary intention to kill is absolutely forbidden.</p>
+          </div>
+        </div>
+      </div>
+      <hr className="border-slate-200" />
+      <div className="grid md:grid-cols-3 gap-4">
+        <div className="md:col-span-1 bg-slate-100 p-4 rounded-lg border border-slate-300">
+          <h3 className="text-lg font-black uppercase mb-2">Abortion</h3>
+          <p className="text-sm mb-2"><strong>The Core Conflict:</strong> The moral status (personhood) of the fetus versus the bodily autonomy of the mother.</p>
+          <div className="mt-4 p-3 bg-amber-100 border border-amber-400 rounded">
+            <h4 className="font-bold text-xs uppercase mb-1 text-amber-800">Key Thought Experiments</h4>
+            <p className="text-xs mt-1"><strong>Thomson's Violinist:</strong> Even if the fetus is a person with a right to life, that right does not entail the right to use the mother's body without consent.</p>
+            <p className="text-xs mt-1"><strong>Marquis' Future Like Ours:</strong> Abortion is wrong because it deprives the entity of a valuable future, side-stepping the immediate personhood debate.</p>
+          </div>
+        </div>
+        <div className="md:col-span-2 grid grid-cols-2 gap-4">
+          <div className="bg-blue-50 border-l-4 border-blue-600 p-4">
+            <h4 className="font-bold text-blue-800 mb-2">Utilitarian Approach</h4>
+            <p className="text-sm">Weighs the concrete utility of the mother and society against the potential utility of the fetus. Singer argues a fetus lacks self-awareness and current preferences; thus, the mother's immediate, actualized preferences override the fetus's potential. Rule utilitarians might consider societal impacts of restricted access (illegal, unsafe abortions lowering global utility).</p>
+          </div>
+          <div className="bg-red-50 border-l-4 border-red-600 p-4">
+            <h4 className="font-bold text-red-800 mb-2">Kantian Approach</h4>
+            <p className="text-sm">Application hinges on the definition of rational agency. If a fetus is not a rational agent, it falls outside the direct moral community, making the mother's autonomy paramount. If one assumes potential rational agency warrants respect, terminating it violates the Formula of Humanity. It cannot consent to being destroyed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Business() {
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-black uppercase border-b-2 border-slate-200 pb-2">Business Ethics</h2>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="border border-slate-300 rounded shadow-sm p-4 md:col-span-2">
+          <h3 className="text-xl font-bold mb-2">The Purpose of Business: Shareholder vs Stakeholder</h3>
+          <div className="bg-amber-50 p-2 text-sm border border-amber-200 mb-3">
+            <strong>Milton Friedman's Shareholder Theory:</strong> "The social responsibility of business is to increase its profits." Using corporate funds for "social good" is essentially taxing shareholders without their consent.
+          </div>
+          <div className="space-y-3 text-sm flex gap-4">
+            <div className="flex-1">
+              <p><strong>Utilitarian Critique:</strong> Short-term profit maximisation often generates negative externalities (pollution, poverty) that decrease aggregate global utility. Stakeholder theory (Edward Freeman) argues businesses must consider employees, suppliers, and communities to maximise long-term, stable utility.</p>
+            </div>
+            <div className="flex-1">
+              <p><strong>Kantian Critique:</strong> Friedman treats employees and communities merely as instruments for generating wealth for shareholders. This violates the categorical imperative. A business must operate on maxims that respect the dignity of all involved parties.</p>
+            </div>
+          </div>
+        </div>
+        <div className="border border-slate-300 rounded shadow-sm p-4">
+          <h3 className="text-xl font-bold mb-2">Child Labour & Fair Trade</h3>
+          <div className="bg-amber-50 p-2 text-sm border border-amber-200 mb-3">
+            <strong>Case: Rana Plaza Collapse (2013).</strong> Western brands sourcing from unsafe factories. Exposes the exploitation inherent in global supply chains.
+          </div>
+          <div className="space-y-3 text-sm">
+            <p><strong>Util:</strong> Some utilitarians argue sweatshops represent the best available alternative in developing economies, preventing worse outcomes like starvation. Rule Utilitarians counter that normalizing exploitation traps developing nations in a "race to the bottom," harming global utility long-term.</p>
+            <p><strong>Kant:</strong> Using desperate humans—especially children who cannot give rational consent—purely as cheap cogs for corporate margins is a gross violation of the Formula of Humanity. Fair trade is a rigid moral duty.</p>
+          </div>
+        </div>
+        <div className="border border-slate-300 rounded shadow-sm p-4">
+          <h3 className="text-xl font-bold mb-2">Norms & Whistleblowing</h3>
+          <div className="bg-amber-50 p-2 text-sm border border-amber-200 mb-3">
+            <strong>Case: The Ford Pinto.</strong> Ford calculated it was cheaper to pay off wrongful death lawsuits ($50M) than to fix a fatal gas tank flaw ($137M).
+          </div>
+          <div className="space-y-3 text-sm">
+            <p><strong>Util:</strong> Ford applied a cold cost-benefit analysis. A high-level critique asks if utility <em>can</em> or <em>should</em> map a dollar value to a human life ($200k at the time). Does this calculation inevitably corrupt moral reasoning?</p>
+            <p><strong>Kant & Whistleblowing:</strong> Ford prioritized capital over the priceless value of human life. From a deontological perspective, employees have a moral duty to whistleblow on such practices, as keeping deadly secrets cannot be universalized.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Wealth() {
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-black uppercase border-b-2 border-slate-200 pb-2">Distribution of Wealth</h2>
+      <div className="bg-slate-800 text-white p-6 rounded-lg mb-6">
+        <h3 className="text-xl font-bold mb-2">The Core Problem: Poverty, Inequality, Taxation, Charity</h3>
+        <p className="text-slate-300">Is extreme wealth morally justifiable while extreme poverty exists? Do we have a strict duty to give, or is charity merely supererogatory?</p>
+      </div>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="p-5 border-2 border-purple-600 bg-white rounded-lg md:col-span-2 relative">
+           <div className="absolute top-0 right-0 bg-purple-600 text-white px-3 py-1 text-sm font-bold rounded-bl-lg rounded-tr-md">Systemic Theories</div>
+           <div className="grid md:grid-cols-2 gap-4 mt-4">
+             <div>
+               <h4 className="font-bold text-lg mb-2 text-purple-900">John Rawls: Justice as Fairness</h4>
+               <p className="text-sm"><strong>The Veil of Ignorance:</strong> If you designed a society without knowing your class, race, or health status, you would create a safety net. Therefore, systemic inequality is only justifiable if it benefits the least advantaged (The Difference Principle).</p>
+             </div>
+             <div>
+               <h4 className="font-bold text-lg mb-2 text-purple-900">Robert Nozick: Entitlement Theory</h4>
+               <p className="text-sm"><strong>Libertarian Critique:</strong> Taxation for wealth redistribution is akin to forced labour. If wealth is acquired justly (fair exchange, no coercion), the state has no right to seize it. Individuals own themselves and the fruits of their labour.</p>
+             </div>
+           </div>
+        </div>
+        <div className="p-5 border-2 border-blue-600 bg-white rounded-lg relative">
+          <div className="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 text-sm font-bold rounded-bl-lg rounded-tr-md">Utilitarianism</div>
+          <h4 className="font-bold text-lg mb-3 mt-2 text-blue-900">Peter Singer's Demand</h4>
+          <p className="text-sm mb-3"><strong>The Shallow Pond Analogy:</strong> If you would save a drowning child at the cost of ruining expensive shoes, you must donate to save a child starving overseas. Distance and nationality are morally irrelevant.</p>
+          <p className="text-sm mb-3"><strong>Diminishing Marginal Utility:</strong> $1,000 to Elon Musk creates zero additional utility. $1,000 to a starving family creates massive utility. Singer argues we have a strict moral duty to give until we reach the point of marginal utility.</p>
+        </div>
+        <div className="p-5 border-2 border-red-600 bg-white rounded-lg relative">
+          <div className="absolute top-0 right-0 bg-red-600 text-white px-3 py-1 text-sm font-bold rounded-bl-lg rounded-tr-md">Kantian Ethics</div>
+          <h4 className="font-bold text-lg mb-3 mt-2 text-red-900">Imperfect Duties</h4>
+          <p className="text-sm mb-3"><strong>Beneficence:</strong> Kant argues we have a duty of beneficence (to help others), but it is an <em>imperfect duty</em>. We must adopt the maxim of helping others, but we have latitude in <em>when</em> and <em>how</em> we do it. We are not expected to bankrupt ourselves.</p>
+          <p className="text-sm mb-3"><strong>Consent & Coercion:</strong> Forced taxation to distribute wealth violates autonomy, treating the wealthy taxpayer as a mere means. Genuine charity must be willed freely from duty to hold any moral worth.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Questions() {
+  const qnas = [
+    {
+      q: "Evaluate the claim that we have a moral obligation to donate our surplus wealth to poverty relief.",
+      hints: [
+        "THESIS: Singer's utilitarian argument establishes a strict obligation based on marginal utility and the irrelevance of distance (Shallow Pond).",
+        "ANTITHESIS: Nozick's entitlement theory argues enforced obligation (taxation) is coercion. Kant argues beneficence is merely an imperfect duty, granting us latitude.",
+        "SYNTHESIS: Evaluate whether individual 'charity' is sufficient. Can we reconcile a Rawlsian systemic duty of justice with individual autonomy?"
+      ]
+    },
+    {
+      q: "Evaluate the view that there is no moral difference between active euthanasia and passive euthanasia.",
+      hints: [
+        "THESIS: James Rachels' argument that outcomes are identical; if the goal is to end suffering, active is often more efficient and thus morally superior (Utilitarian framework).",
+        "ANTITHESIS: The Doctrine of Double Effect (Natural Law/Deontology). Intention matters. Letting die is an acceptance of natural limits; killing is a violation of the sanctity of life.",
+        "SYNTHESIS: Does the distinction rely on a flawed definition of 'action' versus 'omission'? If a doctor purposefully omits treatment to cause death, is the intention not identical?"
+      ]
+    },
+    {
+      q: "To what extent is a business's only moral responsibility to increase its profits?",
+      hints: [
+        "THESIS: Friedman's Shareholder Theory. Executives are agents of the owners; diverting profits to 'social causes' is a breach of fiduciary duty and theft.",
+        "ANTITHESIS: Kantian ethics demonstrates that treating employees, consumers, or the environment merely as means to profit (e.g., Ford Pinto, Sweatshops) violates basic human dignity.",
+        "SYNTHESIS: Long-term profit cannot be separated from stakeholder well-being (Rule Utilitarianism). A business operating outside moral norms inevitably destroys the social contract it relies upon."
+      ]
+    }
+  ];
+  return (
+    <div className="space-y-6">
+      <h2 className="text-2xl font-black uppercase border-b-2 border-slate-200 pb-2">Exam Blueprints (Grade 7 Focus)</h2>
+      <p className="text-sm text-slate-600 mb-4">Notice that the questions do not name the theories. You must bring the theories to the question. Do not summarise. Attack the premise.</p>
+      <div className="space-y-4">
+        {qnas.map((item, index) => (
+          <details key={index} className="group bg-slate-50 border-2 border-slate-300 rounded-lg cursor-pointer">
+            <summary className="font-bold text-lg p-4 group-hover:bg-slate-100 outline-none">
+              Q: {item.q}
+            </summary>
+            <div className="p-4 border-t-2 border-slate-300 bg-white">
+              <h4 className="text-xs uppercase font-black text-slate-500 mb-2">Grade 7 Essay Blueprint</h4>
+              <ul className="space-y-2">
+                {item.hints.map((hint, i) => {
+                  const [prefix, ...rest] = hint.split(':');
+                  return (
+                    <li key={i} className="text-sm">
+                      <strong className="text-slate-900">{prefix}:</strong> {rest.join(':')}
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Flashcards() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const cards = [
+    { front: "Act Utilitarianism", back: "Evaluates the morality of individual actions based on their specific outcomes. Stress test: Justifies horrifying acts (tyranny of the majority) if aggregate utility increases." },
+    { front: "Rule Utilitarianism", back: "Evaluates conformity to rules that generally maximise utility. Stress test: Does it collapse back into Act Utilitarianism when exceptions are made for 'extreme' utility?" },
+    { front: "Preference Utilitarianism (Singer)", back: "Maximises the satisfaction of individual preferences rather than mere pleasure. Extends moral consideration to any being capable of having preferences (including animals/fetuses depending on development)." },
+    { front: "Hedonic Calculus (Bentham)", back: "A quantitative method to measure pleasure/pain (intensity, duration, certainty, propinquity, etc.). Stress test: Impossible to accurately calculate long-term, complex human variables." },
+    { front: "Higher vs. Lower Pleasures (Mill)", back: "Qualitative utilitarianism. 'Better to be Socrates dissatisfied than a fool satisfied.' Stress test: Elitist. Who dictates what constitutes a 'higher' intellectual pleasure?" },
+    { front: "Categorical Imperative (Universal Law)", back: "Act only according to that maxim whereby you can at the same time will that it should become a universal law. Tests for logical contradictions in actions (e.g., lying destroys the concept of truth)." },
+    { front: "Formula of Humanity (Kant)", back: "Treat humanity never merely as a means to an end, but always as an end in itself. The ultimate defence against utilitarian exploitation." },
+    { front: "Perfect Duties", back: "Strict, inflexible duties (e.g., do not murder, do not lie). They must be obeyed universally without exception." },
+    { front: "Imperfect Duties", back: "Duties of virtue (e.g., beneficence/charity, self-improvement). We have a duty to adopt the maxim, but latitude in how and when we execute it." },
+    { front: "Conflict of Duties (Kantian Flaw)", back: "Kant provides no mechanism to resolve conflicting absolute duties (e.g., the inquiring murderer at the door: duty to tell the truth vs. duty to preserve life)." },
+    { front: "Sanctity of Life Ethic", back: "The absolutist, often theological belief that human life has intrinsic, inviolable value regardless of its condition. Opposes euthanasia and abortion." },
+    { front: "Quality of Life Ethic", back: "Utilitarian metric replacing sanctity of life. Life only has value if it possesses a certain baseline of positive utility or conscious agency." },
+    { front: "Active Euthanasia", back: "Taking direct medical action to end a patient's life (e.g., lethal injection). Morally distinct from letting die in Natural Law, but identical in Utilitarianism." },
+    { front: "Passive Euthanasia", back: "Withholding or withdrawing life-sustaining treatment, allowing the underlying disease to cause death. Broadly accepted legally; legally distinct from active." },
+    { front: "Voluntary vs. Non-Voluntary Euthanasia", back: "Voluntary: Patient explicitly requests it. Non-voluntary: Patient is incapacitated (coma, infant) and someone else decides based on presumed best interests." },
+    { front: "Doctrine of Double Effect", back: "An action with bad consequences (death) is permissible if the intention was good (pain relief). Used to justify passive euthanasia in deontological frameworks." },
+    { front: "Smith and Jones Experiment (Rachels)", back: "Thought experiment proving no moral difference between killing (active) and letting die (passive). If the intention and outcome are the same, the moral weight is identical." },
+    { front: "Slippery Slope Argument (Euthanasia)", back: "Consequentialist fear that legalising voluntary euthanasia will inevitably degrade societal respect for life, leading to non-voluntary euthanasia of the disabled or elderly." },
+    { front: "Personhood Debate (Abortion)", back: "The central conflict of abortion. Does moral status begin at conception (genetic), viability (biological), or consciousness (psychological)?" },
+    { front: "Judith Jarvis Thomson's Violinist", back: "Thought experiment separating right to life from bodily autonomy. Even if a fetus is a person, it cannot use a mother's body without consent." },
+    { front: "Don Marquis' 'Future Like Ours'", back: "Argument against abortion avoiding the personhood debate. Killing is wrong because it deprives an entity of a valuable future. A fetus possesses this potential." },
+    { front: "Savita Halappanavar Case", back: "Real-world failure of absolutist anti-abortion laws. Denied a medically necessary abortion in Ireland, resulting in her preventable death. Triggers utilitarian outrage." },
+    { front: "Diane Pretty Case", back: "UK case where a woman paralysed by ALS was denied the right to assisted suicide. Highlights the tension between state-enforced sanctity of life and personal autonomy." },
+    { front: "Dignitas (Switzerland)", back: "Operationalises the Quality of Life ethic and bodily autonomy by legally providing assisted dying services, standing in stark contrast to Kantian/Natural Law state policies." },
+    { front: "Singer on Infanticide", back: "Controversial strict utilitarian view: If a newborn severely lacks quality of life and self-awareness, it lacks personhood, making euthanasia permissible to maximise parental/societal utility." },
+    { front: "Shareholder Theory (Friedman)", back: "The only social responsibility of business is to increase profits within the rules of the game. Executives are agents of owners; CSR is essentially theft." },
+    { front: "Stakeholder Theory (Freeman)", back: "Businesses must create value for all stakeholders (employees, customers, community, suppliers), not just shareholders. A rule-utilitarian approach for long-term stability." },
+    { front: "Ford Pinto Case", back: "Ford calculated it was cheaper to pay wrongful death lawsuits than recall fatal cars. The ultimate real-world example of utilitarian cost-benefit analysis violating Kant's Formula of Humanity." },
+    { front: "Rana Plaza Collapse", back: "2013 factory collapse in Bangladesh. Exposes the deadly Kantian violation of Western brands using developing-world labour as a mere means for cheap fast fashion." },
+    { front: "Whistleblowing (Ethical Duty)", back: "From a Kantian perspective, exposing fatal corporate deceit (like the Pinto) is a strict duty, as corporate cover-ups rely on maxims of deception that cannot be universalised." },
+    { front: "Business Espionage", back: "Stealing trade secrets (e.g., Waymo vs. Uber). Kantian failure: relies on theft and deception. Utilitarian debate: might speed up innovation, but destroys trust in the market system." },
+    { front: "Planned Obsolescence", back: "Designing products to fail to ensure repeat purchases. Evaluative hook: Creates immense environmental disutility while treating the consumer purely as a means to profit." },
+    { front: "Sweatshops (Utilitarian Defence)", back: "Some argue sweatshops are the best available economic alternative in developing nations, preventing starvation. A brutal Act Utilitarian calculation." },
+    { front: "Sweatshops (Kantian Critique)", back: "Exploiting desperate economic circumstances negates the possibility of genuine, rational consent. It is inherently coercive and violates human dignity." },
+    { front: "Fair Trade", back: "A systemic attempt to inject Kantian respect (living wages, safe conditions) into global supply chains. Often requires sacrificing short-term profit for moral duty." },
+    { front: "Child Labour", back: "Children lack full rational agency, making them incapable of consenting to labour contracts. Employing them is a categorical violation of their potential as rational beings." },
+    { front: "Corporate Social Responsibility (CSR)", back: "When businesses engage in charity. Stress test: Is it genuine duty, or just 'greenwashing' (treating the charity itself as a mere means to improve PR and profits)?" },
+    { front: "Diminishing Marginal Utility", back: "The principle that each additional dollar brings less happiness. The 1000th dollar to a billionaire yields zero utility; to a starving child, it is life-saving. Singer's basis for redistribution." },
+    { front: "Peter Singer's Shallow Pond", back: "If you'd ruin expensive shoes to save a drowning child right in front of you, you must donate to save a starving child overseas. Distance/nationality are morally irrelevant." },
+    { front: "Supererogatory Actions", back: "Actions that are morally good but not strictly required (going 'above and beyond'). Singer argues charity is NOT supererogatory; it is a strict moral duty." },
+    { front: "Duty of Beneficence (Kant)", back: "We have an imperfect duty to help others. We must cultivate a charitable mindset but have the autonomy to choose when and how we give. Rejects Singer's extreme demands." },
+    { front: "Absolute vs. Relative Poverty", back: "Absolute: Lacking basic survival needs (food, shelter). Relative: Poor compared to the societal average. Utilitarians focus primarily on eliminating absolute poverty to stop immense suffering." },
+    { front: "John Rawls' Veil of Ignorance", back: "Thought experiment for systemic justice. Design society's rules without knowing your future race, class, or health. Rational self-interest dictates creating a strong safety net." },
+    { front: "The Difference Principle (Rawls)", back: "Systemic social and economic inequalities are only just if they result in compensating benefits for everyone, particularly the least advantaged members of society." },
+    { front: "Robert Nozick's Entitlement Theory", back: "A libertarian framework. If wealth is acquired justly (no theft/fraud) and transferred justly, the resulting distribution is moral, regardless of how unequal it is." },
+    { front: "Taxation as Forced Labour (Nozick)", back: "Seizing earnings via taxation to redistribute wealth violates self-ownership. It forces the wealthy to work a percentage of their time for the state without consent." },
+    { front: "Systemic Justice vs. Individual Charity", back: "The dialectic tension: Do we solve poverty through individual donations (Singer) or by restructuring state institutions and tax codes (Rawls)?" },
+    { front: "The Demandingness Objection", back: "Critique of Singer's Utilitarianism: requiring us to give away wealth until we are marginally better off than the poor strips us of personal projects, turning us into utility-generating machines." },
+    { front: "World Food Programme Example", back: "When the UN challenged billionaires to donate a fraction of wealth to solve hunger. A real-world clash of Nozick's entitlement vs. Singer's moral obligation." },
+    { front: "The 'Tyranny of the Majority' (Wealth)", back: "If a democratic majority votes to seize the assets of a wealthy minority purely to distribute them, utilitarianism might justify it, but Nozick/Kant would condemn it as theft." }
+  ];
+  const nextCard = () => {
+    setIsFlipped(false);
+    setTimeout(() => setCurrentIndex((prev) => (prev + 1) % cards.length), 150);
+  };
+  const prevCard = () => {
+    setIsFlipped(false);
+    setTimeout(() => setCurrentIndex((prev) => (prev - 1 + cards.length) % cards.length), 150);
+  };
+  return (
+    <div className="space-y-6 flex flex-col items-center">
+      <h2 className="text-2xl font-black uppercase border-b-2 border-slate-200 w-full pb-2">Active Recall Drill</h2>
+      <p className="text-sm text-slate-600 self-start">Flashcards build baseline knowledge. They do not teach evaluation. Master these definitions, but more importantly, internalize the "Stress Test" on the back of each card before attempting the essay blueprints.</p>
+      <div
+        className="w-full max-w-2xl h-72 cursor-pointer mt-4"
+        style={{ perspective: '1000px' }}
+        onClick={() => setIsFlipped(!isFlipped)}
+      >
+        <div
+          className="relative w-full h-full transition-transform duration-500"
+          style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateX(180deg)' : 'none' }}
+        >
+          <div
+            className="absolute w-full h-full bg-white border-4 border-slate-900 rounded-xl shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] flex items-center justify-center p-8"
+            style={{ backfaceVisibility: 'hidden' }}
+          >
+            <h3 className="text-3xl font-black text-center">{cards[currentIndex].front}</h3>
+            <div className="absolute bottom-4 right-4 text-slate-400 flex items-center gap-1 text-sm font-bold">
+              <RefreshCw size={14} /> Flip
+            </div>
+          </div>
+          <div
+            className="absolute w-full h-full bg-slate-900 text-white border-4 border-slate-900 rounded-xl shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] flex items-center justify-center p-8"
+            style={{ backfaceVisibility: 'hidden', transform: 'rotateX(180deg)' }}
+          >
+            <p className="text-lg font-medium text-center leading-relaxed">{cards[currentIndex].back}</p>
+            <div className="absolute bottom-4 right-4 text-slate-400 flex items-center gap-1 text-sm font-bold">
+              <RefreshCw size={14} /> Flip
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex gap-4 mt-6">
+        <button onClick={prevCard} className="px-6 py-3 bg-slate-200 hover:bg-slate-300 font-bold rounded-lg flex items-center gap-2 border-2 border-slate-900">
+          <ArrowLeft size={18} /> Prev
+        </button>
+        <span className="flex items-center font-bold text-slate-500">
+          {currentIndex + 1} / {cards.length}
+        </span>
+        <button onClick={nextCard} className="px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-lg flex items-center gap-2 border-2 border-slate-900">
+          Next <ArrowRight size={18} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Autopsy() {
+  const [answers, setAnswers] = useState({});
+  const scenarios = [
+    {
+      id: 1,
+      topic: "Business Ethics: Ford Pinto",
+      grade: "Grade 4 (Mediocre)",
+      paragraph: "In the Ford Pinto case, the company realised their cars were exploding. Instead of fixing the gas tank, they did a utilitarian calculation and found it was cheaper to just pay the families of the dead people. This is morally wrong because Kant says you should follow the categorical imperative and not do bad things for money. Ford should have fixed the cars.",
+      question: "Why does this paragraph fail to achieve a high grade?",
+      options: [
+        { id: 'A', text: "It doesn't explicitly mention Act vs. Rule Utilitarianism.", feedback: "Wrong focus. While true, dropping the words 'Act vs Rule' doesn't fix the core analytical failure here.", isCorrect: false },
+        { id: 'B', text: "It summarizes the event but fails to apply the specific mechanics of Kantian theory.", feedback: "Correct. 'Kant says you shouldn't do bad things' is primary school logic. A Grade 7 student must specify that Ford violated the Formula of Humanity by treating human lives merely as a financial means to a corporate end.", isCorrect: true },
+        { id: 'C', text: "It doesn't provide enough historical context about the year the Pinto was released.", feedback: "Terrible. This is a philosophy paper, not a history paper. Do not waste word count on irrelevant details.", isCorrect: false }
+      ]
+    },
+    {
+      id: 2,
+      topic: "Wealth & Poverty: Singer's Demand",
+      grade: "Grade 5 (Superficial)",
+      paragraph: "Peter Singer argues that if we have surplus wealth, we must donate it to save dying children, just like we would save a drowning child in a pond. This is a strong argument because saving lives is good. However, Nozick says taxation is forced labour, so we shouldn't have to give our money away if we don't want to.",
+      question: "Identify the critical evaluative flaw in this synthesis.",
+      options: [
+        { id: 'A', text: "It presents two opposing views without resolving the tension between them.", feedback: "Correct. This is the classic 'Thesis, Antithesis, Stop' trap. The student just slammed Singer and Nozick together and walked away. A Grade 7 essay must evaluate *which* framework is more compelling or how they might reconcile.", isCorrect: true },
+        { id: 'B', text: "It misrepresents Nozick's Entitlement Theory.", feedback: "Incorrect. The summary of Nozick, while basic, is actually accurate enough for a premise. The failure is the lack of synthesis.", isCorrect: false },
+        { id: 'C', text: "It fails to define 'surplus wealth' accurately.", feedback: "Incorrect. While defining terms is important, the fatal structural flaw is the complete lack of evaluative synthesis.", isCorrect: false }
+      ]
+    },
+    {
+      id: 3,
+      topic: "Biomedical: Euthanasia",
+      grade: "Grade 3 (Catastrophic)",
+      paragraph: "Utilitarianism says active euthanasia is good because it stops the patient's pain and makes the family less sad. Kant says it is bad because suicide is against the rules and you shouldn't kill people. Therefore, euthanasia is a very complex issue and it just depends on your personal beliefs.",
+      question: "Identify the critical failure that guarantees a failing grade.",
+      options: [
+        { id: 'A', text: "The student did not use the terms 'Act' and 'Rule' Utilitarianism.", feedback: "Irrelevant. Throwing vocabulary at a terrible argument doesn't fix it.", isCorrect: false },
+        { id: 'B', text: "It concludes with a relativist cop-out instead of taking a philosophical position.", feedback: "Correct. 'It depends on your beliefs' is the death knell of a philosophy essay. The examiner is testing your ability to argue a position, not your ability to shrug.", isCorrect: true },
+        { id: 'C', text: "It incorrectly states Kant's view on suicide.", feedback: "Incorrect. Kant *does* oppose suicide, but the student's reasoning ('against the rules') is primary-school level, and the conclusion is the real fatal error.", isCorrect: false }
+      ]
+    },
+    {
+      id: 4,
+      topic: "Biomedical: Abortion (Thomson vs Marquis)",
+      grade: "Grade 6 (Strong but Incomplete)",
+      paragraph: "Thomson's violinist analogy demonstrates that even if a fetus has a full right to life, it does not inherently possess the right to use the mother's body without consent, making abortion permissible. Conversely, Marquis argues abortion is immoral because it deprives the fetus of a 'future like ours'. Both theories offer strong perspectives on the moral status of the fetus.",
+      question: "Why does this miss the Grade 7 band?",
+      options: [
+        { id: 'A', text: "It fails to explain the violinist analogy in enough detail.", feedback: "Wrong. Examiners know the analogy. Wasting words summarizing it instead of analyzing it lowers your grade.", isCorrect: false },
+        { id: 'B', text: "It fails to force the two theories into direct dialectic conflict.", feedback: "Correct. It states Theory A, states Theory B, and stops. A Grade 7 must ask: How would Thomson respond to Marquis? (e.g., 'Even if it has a future like ours, that future cannot be subsidized by the non-consensual hijacking of another's bodily autonomy').", isCorrect: true },
+        { id: 'C', text: "It completely ignores the Utilitarian perspective on abortion.", feedback: "Wrong. You do not need to list every theory. Depth of analysis on two conflicting theories beats a superficial summary of three.", isCorrect: false }
+      ]
+    },
+    {
+      id: 5,
+      topic: "Business: Sweatshops & Consent",
+      grade: "Grade 7 (Masterclass)",
+      paragraph: "While act utilitarians might defend sweatshop labour as a brutal but necessary preventative measure against starvation, this relies on a false dichotomy that ignores systemic alternatives like Fair Trade. Kantian ethics exposes the deeper moral failure: by leveraging extreme economic desperation to secure a labour contract, corporations bypass genuine rational consent. The worker's 'choice' is entirely coercive, meaning the corporation treats the human purely as a margin-enhancing instrument.",
+      question: "What specific analytical move elevates this to a Grade 7?",
+      options: [
+        { id: 'A', text: "It uses complex vocabulary like 'margin-enhancing instrument'.", feedback: "Wrong. Big words masking weak logic will fail. The vocabulary here is a byproduct of precise thinking, not the cause of the grade.", isCorrect: false },
+        { id: 'B', text: "It attacks the premise of the opposing argument and identifies a structural flaw in the concept of 'consent'.", feedback: "Correct. It doesn't just say 'Utilitarians are wrong.' It calls out their 'false dichotomy'. Then, it uses Kant not just as a rule, but as a scalpel to dissect *why* economic desperation negates the possibility of valid consent.", isCorrect: true },
+        { id: 'C', text: "It successfully balances three different normative frameworks in one paragraph.", feedback: "Wrong. It only explicitly uses two (Util and Kant). Its strength is depth and aggressive synthesis, not breadth.", isCorrect: false }
+      ]
+    }
+  ];
+  const handleSelect = (scenarioId, optionId) => {
+    setAnswers({ ...answers, [scenarioId]: optionId });
+  };
+  return (
+    <div className="space-y-8">
+      <div className="border-b-2 border-slate-200 pb-2">
+        <h2 className="text-2xl font-black uppercase flex items-center gap-2">
+          <Scissors size={28} /> Argument Autopsy
+        </h2>
+        <p className="text-sm text-slate-600 mt-1">
+          Below are actual examples of weak, mid-band student writing. If you write like this, you will not get a 7. Identify the fatal flaw in each paragraph.
+        </p>
+      </div>
+      <div className="space-y-10">
+        {scenarios.map((scenario) => (
+          <div key={scenario.id} className="bg-slate-50 border-2 border-slate-300 rounded-lg overflow-hidden">
+            <div className="bg-slate-200 px-4 py-2 border-b-2 border-slate-300 flex justify-between items-center">
+              <span className="font-bold text-slate-800">{scenario.topic}</span>
+              <span className="text-xs font-black uppercase bg-red-600 text-white px-2 py-1 rounded">{scenario.grade}</span>
+            </div>
+            <div className="p-6">
+              <p className="font-mono text-sm bg-white p-4 border-l-4 border-red-400 text-slate-700 mb-6 shadow-inner">
+                "{scenario.paragraph}"
+              </p>
+              <h3 className="font-black text-lg mb-4">{scenario.question}</h3>
+              <div className="space-y-3">
+                {scenario.options.map((opt) => {
+                  const isSelected = answers[scenario.id] === opt.id;
+                  const showFeedback = isSelected;
+                  return (
+                    <div key={opt.id} className="flex flex-col">
+                      <button
+                        onClick={() => handleSelect(scenario.id, opt.id)}
+                        className={`text-left p-4 border-2 rounded-lg font-medium transition-all ${
+                          isSelected
+                            ? opt.isCorrect
+                              ? 'bg-green-100 border-green-600'
+                              : 'bg-red-100 border-red-600'
+                            : 'bg-white border-slate-300 hover:border-slate-500 hover:bg-slate-100'
+                        }`}
+                      >
+                        <span className="font-bold mr-2">{opt.id}.</span> {opt.text}
+                      </button>
+                      {showFeedback && (
+                        <div className={`mt-2 p-3 text-sm font-semibold rounded-lg ${opt.isCorrect ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`}>
+                          {opt.feedback}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+    </script>
+</body>
+</html>
